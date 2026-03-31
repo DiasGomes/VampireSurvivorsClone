@@ -18,7 +18,7 @@ var angle:float = 0
 func _ready() -> void:
 	spawn_slime_time = true
 	player.upgrade.connect(limit_increase)
-	print("teste git")
+	
 	
 func _physics_process(_delta: float) -> void:
 	#draw_marker_2d()
