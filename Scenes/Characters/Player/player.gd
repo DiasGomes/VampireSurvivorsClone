@@ -13,10 +13,14 @@ var mouse_position:Vector2
 var level:int
 var xp:int
 var xp_level:Array[int]
+var damage:int
+var critical_per:float
 
 func new_game() -> void:
 	state_machine.initial_node_state = idle
 	level = 0
+	damage = 1
+	critical_per = 0.3
 	xp = 0
 	xp_level = [10,20,30,40,50,60,70,80,90,100]
 	progress_bar.max_value = xp_level[level]
@@ -47,7 +51,7 @@ func level_up() -> void:
 func mouse_input() -> void:
 	if Input.is_action_just_pressed("Shoot"):
 		mouse_position = get_local_mouse_position()
-		shoot.emit(mouse_position)
+		shoot.emit(mouse_position, damage, critical_per)
 
 
 func move_input() -> void:

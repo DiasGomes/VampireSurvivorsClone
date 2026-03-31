@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cjryp1d6cgaw0"]
+
+[ext_resource type="FontFile" uid="uid://d03hxjb15udhx" path="res://Assets/Fonts/pixelFont-7-8x14-sproutLands.ttf" id="1_jcsvo"]
+
+[resource]
+font = ExtResource("1_jcsvo")

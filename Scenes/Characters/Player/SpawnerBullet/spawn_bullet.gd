@@ -11,10 +11,10 @@ func _ready() -> void:
 	cameraShakeNoise = FastNoiseLite.new()
 	player.shoot.connect(create_bullet)
 
-func create_bullet(_dir:Vector2) -> void:
+func create_bullet(_dir:Vector2, _damage:int, _critical:float) -> void:
 	var new_bullet:Bullet = spawner_component.spawn(player)
 	new_bullet.shake.connect(shake_screen)
-	new_bullet.start(_dir)
+	new_bullet.start(_dir, _damage, _critical)
 	
 func startCameraShake(intensity:float=0.5) -> void:
 	var cameraOffset:float = cameraShakeNoise.get_noise_1d(Time.get_ticks_msec()) * intensity

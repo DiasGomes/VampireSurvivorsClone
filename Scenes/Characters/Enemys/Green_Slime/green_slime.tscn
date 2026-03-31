@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://braugsuh10aut"]
+[gd_scene load_steps=28 format=3 uid="uid://braugsuh10aut"]
 
 [ext_resource type="Script" uid="uid://bvjqabr0vhrbs" path="res://Scenes/Characters/Enemys/Green_Slime/slime.gd" id="1_2my3h"]
 [ext_resource type="Texture2D" uid="uid://sbolbl3b2a7u" path="res://Assets/Sprites/slime_green.png" id="1_8ldws"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c3xk15ena7hae" path="res://Scenes/Characters/Enemys/Green_Slime/hit.gd" id="4_w31qr"]
 [ext_resource type="Script" uid="uid://k3yabxhplnh5" path="res://Scenes/Characters/Enemys/Green_Slime/died.gd" id="7_dt1ag"]
 [ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/slime_particles.tscn" id="8_26jaj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5s8q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dt1ag"]
 resource_local_to_scene = true
@@ -147,6 +149,7 @@ collision_mask = 15
 script = ExtResource("1_2my3h")
 my_sprites = NodePath("AnimatedSprite2D")
 outline_detection_area = NodePath("Area2D")
+label_settings = SubResource("LabelSettings_v5s8q")
 max_life = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

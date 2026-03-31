@@ -3,11 +3,15 @@ extends CharacterBody2D
 
 var direction:Vector2
 var speed:float = 2.0
+var damage:int
+var critical_per:float
 @onready var sprite: Sprite2D = $Sprite2D
 signal shake
 
-func start(_dir:Vector2) -> void:
+func start(_dir:Vector2, _damage:int, _critical_per:float) -> void:
 	direction = _dir
+	damage = _damage
+	critical_per = _critical_per
 	velocity = direction * speed
 	scale = Vector2(0.5, 0.5)
 	var new_angle:float = atan2(direction.y, direction.x)
@@ -20,7 +24,12 @@ func _physics_process(_delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Slime:
-		body.apply_damage(1)
+		var critical: bool = false
+		if randf() < critical_per:
+			damage = damage * 2
+			critical = true
+		body.apply_damage(damage)
+		body.show_damage(damage, critical)
 		body.emit_particle(direction)
 		shake.emit()
 		queue_free()
