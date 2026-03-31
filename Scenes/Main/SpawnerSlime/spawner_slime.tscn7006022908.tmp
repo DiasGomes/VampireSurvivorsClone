@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://yd58ggonw3k0"]
+
+[ext_resource type="Script" uid="uid://w62vrackkl8h" path="res://Scenes/Main/SpawnerSlime/spawner_slime.gd" id="1_78v8g"]
+[ext_resource type="PackedScene" uid="uid://bmvftu6fepx6h" path="res://Scenes/Components/spawner_component.tscn" id="1_lfkxa"]
+[ext_resource type="PackedScene" uid="uid://braugsuh10aut" path="res://Scenes/Characters/Enemys/Green_Slime/green_slime.tscn" id="2_78v8g"]
+
+[node name="SpawnerSlime" type="Marker2D"]
+script = ExtResource("1_78v8g")
+
+[node name="SlimeSpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="SpawnerComponent" parent="." instance=ExtResource("1_lfkxa")]
+scene = ExtResource("2_78v8g")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="timeout" from="SlimeSpawnTimer" to="." method="_on_slime_spawn_timer_timeout"]

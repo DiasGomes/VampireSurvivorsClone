@@ -1,0 +1,197 @@
+[gd_scene load_steps=27 format=3 uid="uid://braugsuh10aut"]
+
+[ext_resource type="Script" uid="uid://bvjqabr0vhrbs" path="res://Scenes/Characters/Enemys/Green_Slime/slime.gd" id="1_2my3h"]
+[ext_resource type="Texture2D" uid="uid://sbolbl3b2a7u" path="res://Assets/Sprites/slime_green.png" id="1_8ldws"]
+[ext_resource type="Shader" uid="uid://f4x4a07rih6g" path="res://Assets/Shaders/entity_geral_shader.gdshader" id="2_26jaj"]
+[ext_resource type="Script" uid="uid://bxd30g4e6ojrl" path="res://Scripts/State_machine/node_state_machine.gd" id="2_mtpox"]
+[ext_resource type="Script" uid="uid://chnr60l1igtxc" path="res://Scenes/Characters/Enemys/Green_Slime/idle.gd" id="3_6j840"]
+[ext_resource type="Script" uid="uid://c3xk15ena7hae" path="res://Scenes/Characters/Enemys/Green_Slime/hit.gd" id="4_w31qr"]
+[ext_resource type="Script" uid="uid://k3yabxhplnh5" path="res://Scenes/Characters/Enemys/Green_Slime/died.gd" id="7_dt1ag"]
+[ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/slime_particles.tscn" id="8_26jaj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dt1ag"]
+resource_local_to_scene = true
+shader = ExtResource("2_26jaj")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/active_outline = false
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intesity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwv21"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt1ag"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owbj7"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1n8h"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vufx"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijteb"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtpox"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j840"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w31qr"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2my3h"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuj4u"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q58b"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocyrv"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u48bf"]
+atlas = ExtResource("1_8ldws")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owbj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwv21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt1ag")
+}],
+"loop": true,
+"name": &"died",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owbj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1n8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vufx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijteb")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtpox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j840")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w31qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2my3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuj4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5q58b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocyrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u48bf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1n8h"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26jaj"]
+size = Vector2(14, 15)
+
+[node name="GreenSlime" type="CharacterBody2D" node_paths=PackedStringArray("my_sprites", "outline_detection_area")]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_2my3h")
+my_sprites = NodePath("AnimatedSprite2D")
+outline_detection_area = NodePath("Area2D")
+max_life = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_dt1ag")
+position = Vector2(1, -10)
+sprite_frames = SubResource("SpriteFrames_owbj7")
+animation = &"hit"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_c1n8h")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("2_mtpox")
+initial_node_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime")]
+script = ExtResource("3_6j840")
+slime = NodePath("../..")
+
+[node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime", "hit_timer")]
+script = ExtResource("4_w31qr")
+slime = NodePath("../..")
+hit_timer = NodePath("../../HitTimer")
+
+[node name="Died" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime", "timer", "collision_shape")]
+script = ExtResource("7_dt1ag")
+slime = NodePath("../..")
+timer = NodePath("../../DeadTimer")
+collision_shape = NodePath("../../CollisionShape2D")
+
+[node name="HitTimer" type="Timer" parent="."]
+
+[node name="DeadTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="SlimeParticles" parent="." instance=ExtResource("8_26jaj")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -7.5)
+shape = SubResource("RectangleShape2D_26jaj")
+debug_color = Color(0, 0.63265485, 0.45258605, 0.41960785)
+
+[connection signal="timeout" from="HitTimer" to="StateMachine/Hit" method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="DeadTimer" to="StateMachine/Died" method="_on_dead_timer_timeout"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://jb7d3jcmrj1c"]
+
+[ext_resource type="Texture2D" uid="uid://cmpl2q0y6lgj1" path="res://Assets/Sprites/orbe.png" id="1_crsih"]
+[ext_resource type="Script" uid="uid://dwwexjempylcc" path="res://Scenes/Objects/orbe.gd" id="1_ghinr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crsih"]
+radius = 8.0
+
+[node name="Orbe" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_ghinr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_crsih")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_crsih")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

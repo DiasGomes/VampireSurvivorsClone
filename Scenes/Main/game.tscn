@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvsn4v0imk271"]
+
+[ext_resource type="PackedScene" uid="uid://fk26c7o2r5d" path="res://Scenes/Characters/Player/player.tscn" id="1_3q5hp"]
+[ext_resource type="Script" uid="uid://ck0h0j4c03bqo" path="res://Scenes/Main/game.gd" id="1_ae08i"]
+[ext_resource type="PackedScene" uid="uid://yd58ggonw3k0" path="res://Scenes/Main/SpawnerSlime/spawner_slime.tscn" id="3_h3ee8"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ae08i")
+
+[node name="Player" parent="." instance=ExtResource("1_3q5hp")]
+
+[node name="Spawner" type="Node2D" parent="."]
+
+[node name="SpawnerSlime" parent="Spawner" node_paths=PackedStringArray("player", "game") instance=ExtResource("3_h3ee8")]
+position = Vector2(-37.01809, 92.895966)
+player = NodePath("../../Player")
+game = NodePath("../..")

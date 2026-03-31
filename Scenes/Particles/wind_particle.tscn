@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bugafccpo6el5"]
+
+[sub_resource type="Gradient" id="Gradient_obqyb"]
+offsets = PackedFloat32Array(0.006451613, 0.5258064, 1)
+colors = PackedColorArray(0.14901961, 0.98039216, 0.7254902, 0, 0.47843137, 1, 0.7921569, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6s8v6"]
+gradient = SubResource("Gradient_obqyb")
+width = 1
+height = 32
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_axuqq"]
+colors = PackedColorArray(1, 1, 1, 0.09411765, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3gf6"]
+gradient = SubResource("Gradient_axuqq")
+
+[sub_resource type="Gradient" id="Gradient_7cr7u"]
+offsets = PackedFloat32Array(0, 0.48872182, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruui8"]
+gradient = SubResource("Gradient_7cr7u")
+
+[sub_resource type="Curve" id="Curve_ndqku"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.12671232, 65.454544), 0.0, 0.0, 0, 0, Vector2(0.23972604, -72.727264), 0.0, 0.0, 0, 0, Vector2(0.38698632, 54.545456), 0.0, 0.0, 0, 0, Vector2(0.5547945, -72.727264), 0.0, 0.0, 0, 0, Vector2(0.6746575, 76.36363), 0.0, 0.0, 0, 0, Vector2(0.82191783, -76.36365), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="CurveTexture" id="CurveTexture_4qynj"]
+curve = SubResource("Curve_ndqku")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ip7ta"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(200, 200, 1)
+gravity = Vector3(100, 20, 0)
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = 5.9999976
+tangential_accel_curve = SubResource("CurveTexture_4qynj")
+damping_max = 100.00001
+scale_min = 1.5
+scale_max = 1.8
+color_ramp = SubResource("GradientTexture1D_ruui8")
+color_initial_ramp = SubResource("GradientTexture1D_k3gf6")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+amount = 15
+texture = SubResource("GradientTexture2D_6s8v6")
+lifetime = 5.0
+preprocess = 2.0
+randomness = 1.0
+visibility_rect = Rect2(-500, -200, 1000, 400)
+trail_enabled = true
+trail_lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_ip7ta")
