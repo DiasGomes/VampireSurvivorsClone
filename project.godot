@@ -81,6 +81,10 @@ Shoot={
 2d_physics/layer_4="Bullet"
 2d_physics/layer_5="Orbe"
 
+[plugins]
+
+git_bash_here/shortcut=Resource("uid://df2ve8i42uprp", "res://addons/git_bash_here/git_bash_here_shortcut.tres")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
