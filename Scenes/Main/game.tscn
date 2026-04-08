@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://fk26c7o2r5d" path="res://Scenes/Characters/Player/player.tscn" id="1_3q5hp"]
 [ext_resource type="Script" uid="uid://ck0h0j4c03bqo" path="res://Scenes/Main/game.gd" id="1_ae08i"]
-[ext_resource type="PackedScene" uid="uid://yd58ggonw3k0" path="res://Scenes/Main/SpawnerSlime/spawner_slime.tscn" id="3_h3ee8"]
+[ext_resource type="PackedScene" uid="uid://yd58ggonw3k0" path="res://Scenes/Main/SpawnerEnemy/spawner_enemy.tscn" id="3_h3ee8"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ae08i")

@@ -6,12 +6,14 @@ extends CharacterBody2D
 @export var label_settings: LabelSettings
 @export var critical_hit_color: Color = Color.RED
 
+@export var max_life:int = 10
+@export var initial_speed:int = 10
+
 var direction:Vector2
 var hit:bool
 var is_moving:bool
 var speed:int
 var life:int
-@export var max_life:int = 10
 
 # Variaveis para spring effect
 var spring_rigidness:float = 0.1
@@ -19,11 +21,11 @@ var spring_damping:float = 0.2
 var spring_velocity:float = 0.0
 var squish_target:float = 1.0
 
-func start(_speed_value:int) -> void:
+func start() -> void:
 	direction = Vector2.ZERO
 	hit = false
 	is_moving = false
-	speed = _speed_value
+	speed = initial_speed
 	life = max_life
 	if outline_detection_area:
 		outline_detection_area.mouse_entered.connect(_on_outline_area_mouse_entered)

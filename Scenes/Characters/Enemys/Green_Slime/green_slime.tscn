@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://chnr60l1igtxc" path="res://Scenes/Characters/Enemys/Green_Slime/idle.gd" id="3_6j840"]
 [ext_resource type="Script" uid="uid://c3xk15ena7hae" path="res://Scenes/Characters/Enemys/Green_Slime/hit.gd" id="4_w31qr"]
 [ext_resource type="Script" uid="uid://k3yabxhplnh5" path="res://Scenes/Characters/Enemys/Green_Slime/died.gd" id="7_dt1ag"]
-[ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/slime_particles.tscn" id="8_26jaj"]
+[ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/enemy_particles.tscn" id="8_v5s8q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v5s8q"]
 
@@ -151,6 +151,7 @@ my_sprites = NodePath("AnimatedSprite2D")
 outline_detection_area = NodePath("Area2D")
 label_settings = SubResource("LabelSettings_v5s8q")
 max_life = 3
+initial_speed = 80
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_dt1ag")
@@ -171,23 +172,15 @@ initial_node_state = NodePath("Idle")
 script = ExtResource("3_6j840")
 slime = NodePath("../..")
 
-[node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime", "hit_timer")]
+[node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime")]
 script = ExtResource("4_w31qr")
 slime = NodePath("../..")
-hit_timer = NodePath("../../HitTimer")
 
-[node name="Died" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime", "timer", "collision_shape")]
+[node name="HitTimer" type="Timer" parent="StateMachine/Hit"]
+
+[node name="Died" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime")]
 script = ExtResource("7_dt1ag")
 slime = NodePath("../..")
-timer = NodePath("../../DeadTimer")
-collision_shape = NodePath("../../CollisionShape2D")
-
-[node name="HitTimer" type="Timer" parent="."]
-
-[node name="DeadTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="SlimeParticles" parent="." instance=ExtResource("8_26jaj")]
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -196,5 +189,4 @@ position = Vector2(1, -7.5)
 shape = SubResource("RectangleShape2D_26jaj")
 debug_color = Color(0, 0.63265485, 0.45258605, 0.41960785)
 
-[connection signal="timeout" from="HitTimer" to="StateMachine/Hit" method="_on_hit_timer_timeout"]
-[connection signal="timeout" from="DeadTimer" to="StateMachine/Died" method="_on_dead_timer_timeout"]
+[node name="EnemyParticles" parent="." instance=ExtResource("8_v5s8q")]

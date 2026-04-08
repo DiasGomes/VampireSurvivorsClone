@@ -1,6 +1,6 @@
 extends NodeState
 
-@export var slime: Slime
+@export var slime: Enemy
 
 func _on_process(_delta : float) -> void:
 	pass

@@ -24,7 +24,7 @@ func new_game() -> void:
 	xp = 0
 	xp_level = [10,20,30,40,50,60,70,80,90,100]
 	progress_bar.max_value = xp_level[level]
-	start(100)
+	start()
 
 
 func _process(_delta: float) -> void:

@@ -331,6 +331,7 @@ script = ExtResource("1_qqvsf")
 my_sprites = NodePath("AnimatedSprite2D")
 outline_detection_area = NodePath("Area2D")
 label_settings = SubResource("LabelSettings_dxcao")
+initial_speed = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6w0kg")

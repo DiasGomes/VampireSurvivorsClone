@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Slime:
+	if body is Enemy:
 		var critical: bool = false
 		if randf() < critical_per:
 			damage = damage * 2

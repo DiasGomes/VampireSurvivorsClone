@@ -1,7 +1,7 @@
 extends NodeState
 
-@export var slime: Slime
-@export var hit_timer: Timer
+@export var slime: Enemy
+@onready var hit_timer: Timer = $HitTimer
 
 func _on_process(_delta : float) -> void:
 	pass
@@ -20,6 +20,8 @@ func _on_next_transitions() -> void:
 
 func _on_enter() -> void:
 	slime.my_sprites.play("hit")
+	hit_timer.timeout.connect(_on_hit_timer_timeout)
+	hit_timer.wait_time = slime.hit_timer_wait_time
 	hit_timer.start()
 
 

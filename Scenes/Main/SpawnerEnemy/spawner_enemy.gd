@@ -3,36 +3,35 @@ extends Marker2D
 
 @export var player:Player
 @export var game:Game
-
-@onready var spawner_component: SceneSpawner = $SpawnerComponent
-@onready var slime_spawn_timer: Timer = $SlimeSpawnTimer
+@onready var enemy_spawner_component: SceneSpawner = $EnemySpawnerComponent
+@onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 @onready var orbe_spawner_component: SceneSpawner = $OrbeSpawnerComponent
 
-var lst_green_slime:Array[Slime]
-var spawn_slime_time:bool
-var slime_limit:int = 30
+var lst_enemy:Array[Enemy]
+var spawn_enemy_time:bool
+var enemy_limit:int = 30
 var radius:int = 500
 var angle:float = 0
 
 
 func _ready() -> void:
-	spawn_slime_time = true
+	spawn_enemy_time = true
 	player.upgrade.connect(limit_increase)
 	
 	
 func _physics_process(_delta: float) -> void:
 	#draw_marker_2d()
 	rotated_position_marker(_delta)
-	if lst_green_slime.size() < slime_limit:
-		if spawn_slime_time:
+	if lst_enemy.size() < enemy_limit:
+		if spawn_enemy_time:
 			spawn_slime()
 			
-	for slime in lst_green_slime:
-		slime.target_position = player.position
+	for enemy in lst_enemy:
+		enemy.target_position = player.position
 
 
 func limit_increase(_level:int) -> void:
-	slime_limit = 30 + (10 * _level)
+	enemy_limit = 30 + (10 * _level)
 	
 
 func rotated_position_marker(_delta: float) -> void: 
@@ -43,13 +42,13 @@ func rotated_position_marker(_delta: float) -> void:
 
 
 func spawn_slime() -> void:
-	var new_slime:Slime = spawner_component.spawn(game)
-	new_slime.start_slime(player.position)
-	new_slime.position = position
-	new_slime.died.connect(slime_destroy)
-	lst_green_slime.append(new_slime)
-	spawn_slime_time = false
-	slime_spawn_timer.start()
+	var new_enemy:Enemy = enemy_spawner_component.spawn(game)
+	new_enemy.start_slime(player.position)
+	new_enemy.position = position
+	new_enemy.died.connect(enemy_destroy)
+	lst_enemy.append(new_enemy)
+	spawn_enemy_time = false
+	enemy_spawn_timer.start()
 	
 	
 func spawn_orbe(_position:Vector2) -> void:
@@ -57,13 +56,9 @@ func spawn_orbe(_position:Vector2) -> void:
 	new_orbe.position = _position
 	
 
-func slime_destroy(_body:Slime) -> void:
+func enemy_destroy(_body:Enemy) -> void:
 	spawn_orbe(_body.position)
-	lst_green_slime.erase(_body)
-
-
-func _on_slime_spawn_timer_timeout() -> void:
-	spawn_slime_time = true
+	lst_enemy.erase(_body)
 
 # funcoes de debug
 func _draw() -> void:
@@ -75,3 +70,7 @@ func _draw() -> void:
 func draw_marker_2d() -> void:
 	if Engine.is_editor_hint() or OS.is_debug_build():
 		queue_redraw()
+
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	spawn_enemy_time = true
