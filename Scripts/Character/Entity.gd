@@ -2,40 +2,48 @@ class_name Entity
 extends CharacterBody2D
 
 @export var my_sprites:AnimatedSprite2D
-@export var outline_detection_area:Area2D
-@export var label_settings: LabelSettings
-@export var critical_hit_color: Color = Color.RED
+@export var my_outline_detection_area:Area2D
+@export var my_label_settings: LabelSettings
+@export var my_critical_hit_color: Color = Color.RED
+@export var my_status: Status
 
-@export var max_life:int = 10
-@export var initial_speed:int = 10
-
-var direction:Vector2
-var hit:bool
-var is_moving:bool
-var speed:int
-var life:int
+var my_direction:Vector2
+var my_hit:bool
+var my_is_moving:bool
+var my_speed:float
+var my_max_health:float
+var my_health:float
+var my_damage:float
 
 # Variaveis para spring effect
-var spring_rigidness:float = 0.1
-var spring_damping:float = 0.2
-var spring_velocity:float = 0.0
-var squish_target:float = 1.0
+var my_spring_rigidness:float = 0.1
+var my_spring_damping:float = 0.2
+var my_spring_velocity:float = 0.0
+var my_squish_target:float = 1.0
 
 func start() -> void:
-	direction = Vector2.ZERO
-	hit = false
-	is_moving = false
-	speed = initial_speed
-	life = max_life
-	if outline_detection_area:
-		outline_detection_area.mouse_entered.connect(_on_outline_area_mouse_entered)
-		outline_detection_area.mouse_exited.connect(_on_outline_area_mouse_exited)
+	my_direction = Vector2.ZERO
+	my_hit = false
+	my_is_moving = false
+	set_status()
+	if my_outline_detection_area:
+		my_outline_detection_area.mouse_entered.connect(_on_outline_area_mouse_entered)
+		my_outline_detection_area.mouse_exited.connect(_on_outline_area_mouse_exited)
 
 func apply_damage(_value:int, _blink_value:float=0.5) -> void:
-	hit = true
-	life -= _value
+	my_hit = true
+	my_health -= _value
 	blink(_blink_value)
-	
+
+func set_status(_status: Status = null) -> void:	
+	if _status:
+		my_status = _status
+	# define os valores com base no status
+	my_max_health = my_status.max_health
+	my_speed = my_status.movement_speed
+	my_damage = my_status.damage
+	# iguala a vida a vida maxima
+	my_health = my_max_health
 	
 # FUNCOES QUE FAZEM O PERSONAGEM LAMPEJAR
 # ATENCAO: usar em conjunto com um Material com "entity_geral_shader" ou "blink.gdshader"
@@ -60,12 +68,12 @@ func _on_outline_area_mouse_exited() -> void:
 
 # FUNCAO QUE CONTRAI O SPRITE
 func spring() -> void:
-	var distance_to_destination:float = my_sprites.scale.x  - squish_target
-	var loss:float = spring_damping * spring_velocity
+	var distance_to_destination:float = my_sprites.scale.x  - my_squish_target
+	var loss:float = my_spring_damping * my_spring_velocity
 	# Hooke's law
-	var force:float = -spring_rigidness * distance_to_destination - loss
-	spring_velocity += force
-	my_sprites.scale.x  += spring_velocity	
+	var force:float = -my_spring_rigidness * distance_to_destination - loss
+	my_spring_velocity += force
+	my_sprites.scale.x  += my_spring_velocity	
 	my_sprites.scale.y = 2.0 - my_sprites.scale.x 
 	
 # mostra dano sofrido
@@ -73,12 +81,12 @@ func show_damage(number: float, critical_hit: bool = false) -> void:
 	# cria um label com o numero do dano
 	var new_label: Label = Label.new()
 	new_label.text = str(number if step_decimals(number) != 0 else number as int)
-	new_label.label_settings = label_settings.duplicate()
+	new_label.label_settings = my_label_settings.duplicate()
 	new_label.z_index = 1000
 	new_label.pivot_offset = Vector2(0.5, 1.0)
 	# muda a cor se for dano critico
 	if critical_hit:
-		new_label.label_settings.font_color = critical_hit_color
+		new_label.label_settings.font_color = my_critical_hit_color
 	# ignona iluminacao da cena e dos objetos
 	var label_material: CanvasItemMaterial = CanvasItemMaterial.new()
 	label_material.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED

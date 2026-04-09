@@ -12,7 +12,7 @@ func _on_physics_process(_delta : float) -> void:
 
 
 func _on_next_transitions() -> void:
-	if player.is_moving:
+	if player.my_is_moving:
 		transition.emit("Run")
 
 

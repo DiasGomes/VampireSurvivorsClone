@@ -1,15 +1,16 @@
-[gd_scene load_steps=28 format=3 uid="uid://braugsuh10aut"]
+[gd_scene load_steps=29 format=3 uid="uid://braugsuh10aut"]
 
 [ext_resource type="Script" uid="uid://bvjqabr0vhrbs" path="res://Scenes/Characters/Enemys/Green_Slime/slime.gd" id="1_2my3h"]
 [ext_resource type="Texture2D" uid="uid://sbolbl3b2a7u" path="res://Assets/Sprites/slime_green.png" id="1_8ldws"]
+[ext_resource type="Resource" uid="uid://iau0i7wv08th" path="res://Scenes/Characters/Enemys/Green_Slime/green_slime_status.tres" id="2_5vkiw"]
 [ext_resource type="Shader" uid="uid://f4x4a07rih6g" path="res://Assets/Shaders/entity_geral_shader.gdshader" id="2_26jaj"]
 [ext_resource type="Script" uid="uid://bxd30g4e6ojrl" path="res://Scripts/State_machine/node_state_machine.gd" id="2_mtpox"]
 [ext_resource type="Script" uid="uid://chnr60l1igtxc" path="res://Scenes/Characters/Enemys/Green_Slime/idle.gd" id="3_6j840"]
 [ext_resource type="Script" uid="uid://c3xk15ena7hae" path="res://Scenes/Characters/Enemys/Green_Slime/hit.gd" id="4_w31qr"]
 [ext_resource type="Script" uid="uid://k3yabxhplnh5" path="res://Scenes/Characters/Enemys/Green_Slime/died.gd" id="7_dt1ag"]
-[ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/enemy_particles.tscn" id="8_v5s8q"]
+[ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/slime_particles.tscn" id="8_v5s8q"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_v5s8q"]
+[sub_resource type="LabelSettings" id="LabelSettings_5vkiw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dt1ag"]
 resource_local_to_scene = true
@@ -143,15 +144,14 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26jaj"]
 size = Vector2(14, 15)
 
-[node name="GreenSlime" type="CharacterBody2D" node_paths=PackedStringArray("my_sprites", "outline_detection_area")]
+[node name="GreenSlime" type="CharacterBody2D" node_paths=PackedStringArray("my_sprites", "my_outline_detection_area")]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_2my3h")
 my_sprites = NodePath("AnimatedSprite2D")
-outline_detection_area = NodePath("Area2D")
-label_settings = SubResource("LabelSettings_v5s8q")
-max_life = 3
-initial_speed = 80
+my_outline_detection_area = NodePath("Area2D")
+my_label_settings = SubResource("LabelSettings_5vkiw")
+my_status = ExtResource("2_5vkiw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_dt1ag")

@@ -1,4 +1,3 @@
-class_name SpawnSlime
 extends Marker2D
 
 @export var player:Player
@@ -7,7 +6,7 @@ extends Marker2D
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 @onready var orbe_spawner_component: SceneSpawner = $OrbeSpawnerComponent
 
-var lst_enemy:Array[Enemy]
+var lst_enemy:Array[Inimigo]
 var spawn_enemy_time:bool
 var enemy_limit:int = 30
 var radius:int = 500
@@ -24,11 +23,10 @@ func _physics_process(_delta: float) -> void:
 	rotated_position_marker(_delta)
 	if lst_enemy.size() < enemy_limit:
 		if spawn_enemy_time:
-			spawn_slime()
+			spawn_enemy()
 			
 	for enemy in lst_enemy:
 		enemy.target_position = player.position
-		
 
 
 func limit_increase(_level:int) -> void:
@@ -41,8 +39,9 @@ func rotated_position_marker(_delta: float) -> void:
 	if angle >= (2 * PI):
 		angle = 0
 
-func spawn_slime() -> void:
-	var new_enemy:Enemy = enemy_spawner_component.spawn(game)
+
+func spawn_enemy() -> void:
+	var new_enemy:Inimigo = enemy_spawner_component.spawn(game)
 	new_enemy.start_slime(player.position)
 	new_enemy.position = position
 	new_enemy.died.connect(enemy_destroy)

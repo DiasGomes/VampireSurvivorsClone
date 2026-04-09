@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkowlpk6wsqm4"]
+
+[ext_resource type="Script" uid="uid://bxd30g4e6ojrl" path="res://Scripts/State_machine/node_state_machine.gd" id="2_x4ci1"]
+[ext_resource type="Script" uid="uid://dem7336abu3lp" path="res://Scenes/Characters/Enemys/Enemy/inimigo.gd" id="3_ma8uc"]
+[ext_resource type="Script" uid="uid://ip3d8fg7k20f" path="res://Scenes/Characters/Enemys/Enemy/idle.gd" id="3_x4ci1"]
+[ext_resource type="Script" uid="uid://x5ch6jrn6tmi" path="res://Scenes/Characters/Enemys/Enemy/hit.gd" id="4_ma8uc"]
+[ext_resource type="Script" uid="uid://cxdphfxhpwcmo" path="res://Scenes/Characters/Enemys/Enemy/died.gd" id="5_ma8uc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ma8uc"]
+
+[node name="Inimigo" type="CharacterBody2D"]
+script = ExtResource("3_ma8uc")
+my_label_settings = SubResource("LabelSettings_ma8uc")
+
+[node name="NodeStateMachine" type="Node" parent="."]
+script = ExtResource("2_x4ci1")
+metadata/_custom_type_script = "uid://bxd30g4e6ojrl"
+
+[node name="Idle" type="Node" parent="NodeStateMachine"]
+script = ExtResource("3_x4ci1")
+
+[node name="Hit" type="Node" parent="NodeStateMachine"]
+script = ExtResource("4_ma8uc")
+
+[node name="HitTimer" type="Timer" parent="NodeStateMachine/Hit"]
+
+[node name="Died" type="Node" parent="NodeStateMachine"]
+script = ExtResource("5_ma8uc")

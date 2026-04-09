@@ -1,14 +1,15 @@
-[gd_scene load_steps=51 format=3 uid="uid://fk26c7o2r5d"]
+[gd_scene load_steps=52 format=3 uid="uid://fk26c7o2r5d"]
 
 [ext_resource type="Texture2D" uid="uid://d4au4dl8ncqva" path="res://Assets/Sprites/knight.png" id="1_27cb7"]
 [ext_resource type="Script" uid="uid://dx5dgc4yihvw0" path="res://Scenes/Characters/Player/player.gd" id="1_qqvsf"]
+[ext_resource type="Resource" uid="uid://b58cd6rd7epyi" path="res://Scenes/Characters/Player/player_status.tres" id="2_1mdwi"]
 [ext_resource type="Shader" uid="uid://f4x4a07rih6g" path="res://Assets/Shaders/entity_geral_shader.gdshader" id="2_fc1h2"]
 [ext_resource type="Script" uid="uid://bxd30g4e6ojrl" path="res://Scripts/State_machine/node_state_machine.gd" id="2_siygm"]
 [ext_resource type="Script" uid="uid://d0cgqnhwnys4e" path="res://Scenes/Characters/Player/idle.gd" id="3_qqvsf"]
 [ext_resource type="Script" uid="uid://ucu71gafw75r" path="res://Scenes/Characters/Player/run.gd" id="5_apx8m"]
 [ext_resource type="PackedScene" uid="uid://cfhom5aft06uq" path="res://Scenes/Characters/Player/SpawnerBullet/spawn_bullet.tscn" id="7_dxcao"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_dxcao"]
+[sub_resource type="LabelSettings" id="LabelSettings_1mdwi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6w0kg"]
 resource_local_to_scene = true
@@ -324,14 +325,14 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("my_sprites", "outline_detection_area")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("my_sprites", "my_outline_detection_area")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_qqvsf")
 my_sprites = NodePath("AnimatedSprite2D")
-outline_detection_area = NodePath("Area2D")
-label_settings = SubResource("LabelSettings_dxcao")
-initial_speed = 100
+my_outline_detection_area = NodePath("Area2D")
+my_label_settings = SubResource("LabelSettings_1mdwi")
+my_status = ExtResource("2_1mdwi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6w0kg")

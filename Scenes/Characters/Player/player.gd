@@ -13,13 +13,11 @@ var mouse_position:Vector2
 var level:int
 var xp:int
 var xp_level:Array[int]
-var damage:int
 var critical_per:float
 
 func new_game() -> void:
 	state_machine.initial_node_state = idle
 	level = 0
-	damage = 1
 	critical_per = 0.3
 	xp = 0
 	xp_level = [10,20,30,40,50,60,70,80,90,100]
@@ -51,27 +49,27 @@ func level_up() -> void:
 func mouse_input() -> void:
 	if Input.is_action_just_pressed("Shoot"):
 		mouse_position = get_local_mouse_position()
-		shoot.emit(mouse_position, damage, critical_per)
+		shoot.emit(mouse_position, my_damage, critical_per)
 
 
 func move_input() -> void:
 	# movimento horizontal
 	if Input.is_action_pressed("Right"):
-		direction.x = 1
+		my_direction.x = 1
 		my_sprites.flip_h = false
 	elif Input.is_action_pressed("Left"):
-		direction.x = -1
+		my_direction.x = -1
 		my_sprites.flip_h = true
 	else:
-		direction.x = 0
+		my_direction.x = 0
 	# movimento vertical
 	if Input.is_action_pressed("Down"):
-		direction.y = 1
+		my_direction.y = 1
 	elif Input.is_action_pressed("Up"):
-		direction.y = -1
+		my_direction.y = -1
 	else:
-		direction.y = 0
+		my_direction.y = 0
 	# se nao estiver parado
-	is_moving = true
-	if direction == Vector2.ZERO:
-		is_moving = false
+	my_is_moving = true
+	if my_direction == Vector2.ZERO:
+		my_is_moving = false

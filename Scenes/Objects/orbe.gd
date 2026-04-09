@@ -5,6 +5,6 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		collision_shape.disabled = true
+		collision_shape.set_deferred("disabled", true)
 		body.add_score()
-		queue_free()
+		call_deferred("queue_free")
