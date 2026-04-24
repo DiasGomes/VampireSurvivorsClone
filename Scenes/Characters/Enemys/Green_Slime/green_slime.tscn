@@ -1,13 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://braugsuh10aut"]
+[gd_scene load_steps=26 format=3 uid="uid://braugsuh10aut"]
 
-[ext_resource type="Script" uid="uid://bvjqabr0vhrbs" path="res://Scenes/Characters/Enemys/Green_Slime/slime.gd" id="1_2my3h"]
+[ext_resource type="Script" uid="uid://bvjqabr0vhrbs" path="res://Scripts/Character/enemy.gd" id="1_2my3h"]
 [ext_resource type="Texture2D" uid="uid://sbolbl3b2a7u" path="res://Assets/Sprites/slime_green.png" id="1_8ldws"]
 [ext_resource type="Resource" uid="uid://iau0i7wv08th" path="res://Scenes/Characters/Enemys/Green_Slime/green_slime_status.tres" id="2_5vkiw"]
 [ext_resource type="Shader" uid="uid://f4x4a07rih6g" path="res://Assets/Shaders/entity_geral_shader.gdshader" id="2_26jaj"]
-[ext_resource type="Script" uid="uid://bxd30g4e6ojrl" path="res://Scripts/State_machine/node_state_machine.gd" id="2_mtpox"]
-[ext_resource type="Script" uid="uid://chnr60l1igtxc" path="res://Scenes/Characters/Enemys/Green_Slime/idle.gd" id="3_6j840"]
-[ext_resource type="Script" uid="uid://c3xk15ena7hae" path="res://Scenes/Characters/Enemys/Green_Slime/hit.gd" id="4_w31qr"]
-[ext_resource type="Script" uid="uid://k3yabxhplnh5" path="res://Scenes/Characters/Enemys/Green_Slime/died.gd" id="7_dt1ag"]
+[ext_resource type="PackedScene" uid="uid://di24f5xftkwm4" path="res://Scenes/Components/Enemy_State_machine/enemy_state_machine.tscn" id="6_pmkvl"]
 [ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/slime_particles.tscn" id="8_v5s8q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5vkiw"]
@@ -164,24 +161,6 @@ autoplay = "idle"
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_c1n8h")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
-script = ExtResource("2_mtpox")
-initial_node_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime")]
-script = ExtResource("3_6j840")
-slime = NodePath("../..")
-
-[node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime")]
-script = ExtResource("4_w31qr")
-slime = NodePath("../..")
-
-[node name="HitTimer" type="Timer" parent="StateMachine/Hit"]
-
-[node name="Died" type="Node" parent="StateMachine" node_paths=PackedStringArray("slime")]
-script = ExtResource("7_dt1ag")
-slime = NodePath("../..")
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -190,3 +169,6 @@ shape = SubResource("RectangleShape2D_26jaj")
 debug_color = Color(0, 0.63265485, 0.45258605, 0.41960785)
 
 [node name="EnemyParticles" parent="." instance=ExtResource("8_v5s8q")]
+
+[node name="EnemyStateMachine" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("6_pmkvl")]
+enemy = NodePath("..")

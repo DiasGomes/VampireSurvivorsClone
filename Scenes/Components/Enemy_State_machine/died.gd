@@ -1,6 +1,6 @@
 extends NodeState
 
-@export var inimigo: Inimigo
+@export var enemy: Enemy
 
 func _on_process(_delta : float) -> void:
 	pass
@@ -11,8 +11,8 @@ func _on_next_transitions() -> void:
 
 
 func _on_enter() -> void:
-	inimigo.died.emit(inimigo)
-	inimigo.queue_free()
+	enemy.died.emit(enemy)
+	enemy.queue_free()
 
 
 func _on_exit() -> void:

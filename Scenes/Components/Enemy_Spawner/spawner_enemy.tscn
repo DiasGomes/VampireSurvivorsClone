@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cit406gaf0n1y"]
+
+[ext_resource type="Script" uid="uid://dtqv5x5ephc7r" path="res://Scenes/Components/Enemy_Spawner/spawner_enemy.gd" id="1_ixq0f"]
+[ext_resource type="PackedScene" uid="uid://bmvftu6fepx6h" path="res://Scenes/Components/Spawner/spawner_component.tscn" id="2_hmh5f"]
+[ext_resource type="PackedScene" uid="uid://jb7d3jcmrj1c" path="res://Scenes/Objects/orbe.tscn" id="3_8lax4"]
+
+[node name="SpawnerEnemy" type="Marker2D"]
+script = ExtResource("1_ixq0f")
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="OrbeSpawnerComponent" parent="." instance=ExtResource("2_hmh5f")]
+scene = ExtResource("3_8lax4")
+
+[node name="EnemySpawnerComponent" parent="." instance=ExtResource("2_hmh5f")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvsn4v0imk271"]
+
+[ext_resource type="Script" uid="uid://ck0h0j4c03bqo" path="res://Scenes/Main/Game/game.gd" id="1_1d2eo"]
+[ext_resource type="PackedScene" uid="uid://fk26c7o2r5d" path="res://Scenes/Characters/Player/player.tscn" id="2_gioiy"]
+[ext_resource type="PackedScene" uid="uid://cit406gaf0n1y" path="res://Scenes/Components/Enemy_Spawner/spawner_enemy.tscn" id="3_a5ps8"]
+[ext_resource type="Script" uid="uid://buqi73asc2pjb" path="res://Scenes/Main/Game/spawner.gd" id="3_gioiy"]
+[ext_resource type="Script" uid="uid://6v1lqfqo4tbh" path="res://Scripts/Resource/enemy_definition.gd" id="4_xmtad"]
+[ext_resource type="PackedScene" uid="uid://braugsuh10aut" path="res://Scenes/Characters/Enemys/Green_Slime/green_slime.tscn" id="6_xmtad"]
+[ext_resource type="PackedScene" uid="uid://b7tybq40tfjtu" path="res://Scenes/Characters/Enemys/PurpleSlime/purple_slime.tscn" id="7_l7shd"]
+
+[sub_resource type="Resource" id="Resource_fceyo"]
+script = ExtResource("4_xmtad")
+nome = "GreenSlime"
+qtd_max = 20
+enemy = ExtResource("6_xmtad")
+spawn_radius = 150.0
+metadata/_custom_type_script = "uid://6v1lqfqo4tbh"
+
+[sub_resource type="Resource" id="Resource_aub7b"]
+script = ExtResource("4_xmtad")
+nome = "PurpleSlime"
+qtd_max = 10
+enemy = ExtResource("7_l7shd")
+spawn_radius = 250.0
+spawn_angle = 1.0
+metadata/_custom_type_script = "uid://6v1lqfqo4tbh"
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_1d2eo")
+
+[node name="Player" parent="." instance=ExtResource("2_gioiy")]
+
+[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("player", "game")]
+script = ExtResource("3_gioiy")
+player = NodePath("../Player")
+game = NodePath("..")
+spawnerEnemy = ExtResource("3_a5ps8")
+enemys = Array[ExtResource("4_xmtad")]([SubResource("Resource_fceyo"), SubResource("Resource_aub7b")])

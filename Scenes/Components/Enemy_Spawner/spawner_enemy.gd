@@ -1,25 +1,31 @@
+class_name SpawnerEnemy
 extends Marker2D
 
-@export var player:Player
-@export var game:Game
+var player:Player
+var game:Game
+var enemy_definition:EnemyDefinition
 @onready var enemy_spawner_component: SceneSpawner = $EnemySpawnerComponent
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 @onready var orbe_spawner_component: SceneSpawner = $OrbeSpawnerComponent
 
-var lst_enemy:Array[Inimigo]
+var lst_enemy:Array[Enemy]
 var spawn_enemy_time:bool
-var enemy_limit:int = 30
-var radius:int = 500
+var enemy_limit:int
+var radius:float
 var angle:float = 0
-
 
 func _ready() -> void:
 	spawn_enemy_time = true
 	player.upgrade.connect(limit_increase)
+	lst_enemy = []
+	enemy_spawner_component.scene = enemy_definition.enemy
+	enemy_limit = enemy_definition.qtd_max
+	radius = enemy_definition.spawn_radius
+	angle = enemy_definition.spawn_angle
 	
 	
 func _physics_process(_delta: float) -> void:
-	#draw_marker_2d()
+	draw_marker_2d()
 	rotated_position_marker(_delta)
 	if lst_enemy.size() < enemy_limit:
 		if spawn_enemy_time:
@@ -41,8 +47,8 @@ func rotated_position_marker(_delta: float) -> void:
 
 
 func spawn_enemy() -> void:
-	var new_enemy:Inimigo = enemy_spawner_component.spawn(game)
-	new_enemy.start_slime(player.position)
+	var new_enemy:Enemy = enemy_spawner_component.spawn(game)
+	new_enemy.start_enemy(player.position)
 	new_enemy.position = position
 	new_enemy.died.connect(enemy_destroy)
 	lst_enemy.append(new_enemy)

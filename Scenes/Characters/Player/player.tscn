@@ -330,7 +330,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_qqvsf")
 my_sprites = NodePath("AnimatedSprite2D")
-my_outline_detection_area = NodePath("Area2D")
+my_outline_detection_area = NodePath("OutilineArea2D")
 my_label_settings = SubResource("LabelSettings_1mdwi")
 my_status = ExtResource("2_1mdwi")
 
@@ -358,9 +358,9 @@ player = NodePath("../..")
 script = ExtResource("5_apx8m")
 player = NodePath("../..")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="OutilineArea2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutilineArea2D"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_fc1h2")
 debug_color = Color(0, 0.6352442, 0.42328665, 0.41960785)

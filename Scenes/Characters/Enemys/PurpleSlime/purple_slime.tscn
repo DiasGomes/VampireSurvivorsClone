@@ -1,6 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7tybq40tfjtu"]
+[gd_scene load_steps=24 format=3 uid="uid://b7tybq40tfjtu"]
 
+[ext_resource type="Script" uid="uid://bvjqabr0vhrbs" path="res://Scripts/Character/enemy.gd" id="1_tuuh7"]
+[ext_resource type="Resource" uid="uid://rjumipu4yyu3" path="res://Scenes/Characters/Enemys/PurpleSlime/purple_slime_status.tres" id="2_6rgve"]
 [ext_resource type="Texture2D" uid="uid://qrqo8ongodpj" path="res://Assets/Sprites/slime_purple.png" id="2_om568"]
+[ext_resource type="Shader" uid="uid://f4x4a07rih6g" path="res://Assets/Shaders/entity_geral_shader.gdshader" id="3_6rgve"]
+[ext_resource type="PackedScene" uid="uid://1tmkfdutstbu" path="res://Scenes/Particles/slime_particles.tscn" id="4_qhyh1"]
+[ext_resource type="PackedScene" uid="uid://di24f5xftkwm4" path="res://Scenes/Components/Enemy_State_machine/enemy_state_machine.tscn" id="5_htva5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mt1a3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_htva5"]
+resource_local_to_scene = true
+shader = ExtResource("3_6rgve")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/active_outline = false
+shader_parameter/blink_color = Color(0, 0, 0, 1)
+shader_parameter/blink_intesity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36f1x"]
 atlas = ExtResource("2_om568")
@@ -102,12 +119,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_om568"]
 radius = 6.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5ffg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuuh7"]
 size = Vector2(14, 15)
 
-[node name="PurpleSlime" type="CharacterBody2D"]
+[node name="PurpleSlime" type="CharacterBody2D" node_paths=PackedStringArray("my_sprites", "my_outline_detection_area")]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_tuuh7")
+my_sprites = NodePath("AnimatedSprite2D")
+my_outline_detection_area = NodePath("Area2D")
+my_label_settings = SubResource("LabelSettings_mt1a3")
+my_status = ExtResource("2_6rgve")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_htva5")
 sprite_frames = SubResource("SpriteFrames_dwlca")
 animation = &"hit"
 autoplay = "idle"
@@ -120,5 +145,10 @@ shape = SubResource("CircleShape2D_om568")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 4.5)
-shape = SubResource("RectangleShape2D_q5ffg")
-debug_color = Color(0.82849294, 0.27057418, 0.7249072, 0.41960785)
+shape = SubResource("RectangleShape2D_tuuh7")
+debug_color = Color(0.6313616, 0.52624553, 0.16339743, 0.41960785)
+
+[node name="EnemyParticles" parent="." instance=ExtResource("4_qhyh1")]
+
+[node name="EnemyStateMachine" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("5_htva5")]
+enemy = NodePath("..")

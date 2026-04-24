@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://di24f5xftkwm4"]
+
+[ext_resource type="Script" uid="uid://ip3d8fg7k20f" path="res://Scenes/Components/Enemy_State_machine/idle.gd" id="1_vwsqo"]
+[ext_resource type="Script" uid="uid://jbsj0b5fpdyc" path="res://Scripts/State_machine/node_enemy_state_machine.gd" id="1_wsyue"]
+[ext_resource type="Script" uid="uid://x5ch6jrn6tmi" path="res://Scenes/Components/Enemy_State_machine/hit.gd" id="2_wsyue"]
+[ext_resource type="Script" uid="uid://cxdphfxhpwcmo" path="res://Scenes/Components/Enemy_State_machine/died.gd" id="3_6i2up"]
+
+[node name="EnemyStateMachine" type="Node" node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("1_wsyue")
+initial_node_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("1_vwsqo")
+
+[node name="Hit" type="Node" parent="."]
+script = ExtResource("2_wsyue")
+
+[node name="HitTimer" type="Timer" parent="Hit"]
+
+[node name="Died" type="Node" parent="."]
+script = ExtResource("3_6i2up")

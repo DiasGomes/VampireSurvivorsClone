@@ -2,7 +2,6 @@
 class_name SceneSpawner
 extends Node
 
-@export var enemy_d:EnemyDefinition
 @export var scene: PackedScene:
 	set(new_scene):
 		scene = new_scene
@@ -21,8 +20,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func instantiate() -> Node:
 	if not scene:
-		scene = enemy_d.scene
-		#return null
+		return null
 		
 	return scene.instantiate()
 
