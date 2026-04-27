@@ -9,7 +9,6 @@ var cameraShakeNoise:FastNoiseLite
 func _ready() -> void:
 	camera = player.find_child("Camera2D")
 	cameraShakeNoise = FastNoiseLite.new()
-	player.shoot.connect(create_bullet)
 
 func create_bullet(_dir:Vector2, _damage:int, _critical:float) -> void:
 	var new_bullet:Bullet = spawner_component.spawn(player)

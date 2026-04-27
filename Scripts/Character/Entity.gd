@@ -30,7 +30,7 @@ func start() -> void:
 		my_outline_detection_area.mouse_entered.connect(_on_outline_area_mouse_entered)
 		my_outline_detection_area.mouse_exited.connect(_on_outline_area_mouse_exited)
 
-func apply_damage(_value:int, _blink_value:float=0.5) -> void:
+func apply_damage(_value:float, _blink_value:float=0.5) -> void:
 	my_hit = true
 	my_health -= _value
 	blink(_blink_value)

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://bauod5linwk1a"]
+
+[ext_resource type="Script" uid="uid://csw71e6a462u" path="res://Scenes/Components/PowersManager/PowersManager.gd" id="1_l6m7l"]
+[ext_resource type="Script" uid="uid://dg0e7akfxnm6s" path="res://Scenes/Components/PowersManager/fire_ball.gd" id="2_wijp8"]
+[ext_resource type="Script" uid="uid://cfkko8jnsdlsp" path="res://Scripts/Resource/power_definition.gd" id="3_uagql"]
+[ext_resource type="PackedScene" uid="uid://bmvftu6fepx6h" path="res://Scenes/Components/Spawner/spawner_component.tscn" id="4_oofs6"]
+[ext_resource type="PackedScene" uid="uid://df2rj05ia4d0u" path="res://Scenes/Objects/bullet.tscn" id="5_0qfsm"]
+
+[sub_resource type="Resource" id="Resource_oofs6"]
+script = ExtResource("3_uagql")
+active = true
+damage = 1.0
+critical = 0.3
+cooldown = 1.0
+power_range = 100.0
+metadata/_custom_type_script = "uid://cfkko8jnsdlsp"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uagql"]
+
+[node name="PowersManager" type="Node2D"]
+script = ExtResource("1_l6m7l")
+
+[node name="FireBall" type="Node2D" parent="."]
+script = ExtResource("2_wijp8")
+power = SubResource("Resource_oofs6")
+
+[node name="Area2D" type="Area2D" parent="FireBall"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireBall/Area2D"]
+shape = SubResource("CircleShape2D_uagql")
+
+[node name="Timer" type="Timer" parent="FireBall"]
+
+[node name="SpawnerComponent" parent="FireBall" instance=ExtResource("4_oofs6")]
+scene = ExtResource("5_0qfsm")
+
+[connection signal="body_entered" from="FireBall/Area2D" to="FireBall" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="FireBall/Area2D" to="FireBall" method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="FireBall/Timer" to="FireBall" method="_on_timer_timeout"]
