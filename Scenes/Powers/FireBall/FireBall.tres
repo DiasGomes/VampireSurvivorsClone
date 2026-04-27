@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PowerDefinition" load_steps=2 format=3 uid="uid://3o4nsv3qjeaj"]
+
+[ext_resource type="Script" uid="uid://cfkko8jnsdlsp" path="res://Scripts/Resource/power_definition.gd" id="1_s8hne"]
+
+[resource]
+script = ExtResource("1_s8hne")
+active = true
+damage = 1.0
+critical = 0.1
+cooldown = 1.0
+power_range = 100.0
+metadata/_custom_type_script = "uid://cfkko8jnsdlsp"

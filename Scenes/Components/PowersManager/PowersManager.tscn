@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bauod5linwk1a"]
+
+[ext_resource type="Script" uid="uid://csw71e6a462u" path="res://Scenes/Components/PowersManager/PowersManager.gd" id="1_l6m7l"]
+[ext_resource type="PackedScene" uid="uid://gep8g2iskauv" path="res://Scenes/Powers/FireBall/fire_ball.tscn" id="2_uagql"]
+[ext_resource type="Resource" uid="uid://3o4nsv3qjeaj" path="res://Scenes/Powers/FireBall/FireBall.tres" id="3_uagql"]
+
+[node name="PowersManager" type="Node2D"]
+script = ExtResource("1_l6m7l")
+
+[node name="FireBall" parent="." instance=ExtResource("2_uagql")]
+power = ExtResource("3_uagql")

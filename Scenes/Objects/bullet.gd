@@ -2,13 +2,13 @@ class_name Bullet
 extends CharacterBody2D
 
 var direction:Vector2
-var speed:float = 2.0
-var damage:int
+var speed:float = 200.0
+var damage:float
 var critical_per:float
 @onready var sprite: Sprite2D = $Sprite2D
 signal shake
 
-func start(_dir:Vector2, _damage:int, _critical_per:float) -> void:
+func start(_dir:Vector2, _damage:float, _critical_per:float) -> void:
 	direction = _dir
 	damage = _damage
 	critical_per = _critical_per

@@ -8,7 +8,6 @@ func _on_process(_delta : float) -> void:
 
 func _on_physics_process(_delta : float) -> void:
 	player.move_input()
-	player.mouse_input()
 	player.velocity = player.my_direction.normalized() * player.my_speed
 	player.move_and_slide()
 
