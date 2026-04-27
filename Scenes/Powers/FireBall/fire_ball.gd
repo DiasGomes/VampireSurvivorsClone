@@ -31,7 +31,6 @@ func power_active() -> void:
 		
 
 func create_bullet(_dir:Vector2) -> void:
-	print("dist: "+str(_dir))
 	var new_bullet:Bullet = spawner_component.spawn(player)
 	new_bullet.shake.connect(shake_screen)
 	new_bullet.start(_dir, power.damage, power.critical)

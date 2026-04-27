@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://fk26c7o2r5d"]
+[gd_scene load_steps=52 format=3 uid="uid://fk26c7o2r5d"]
 
 [ext_resource type="Texture2D" uid="uid://d4au4dl8ncqva" path="res://Assets/Sprites/knight.png" id="1_27cb7"]
 [ext_resource type="Script" uid="uid://dx5dgc4yihvw0" path="res://Scenes/Characters/Player/player.gd" id="1_qqvsf"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bxd30g4e6ojrl" path="res://Scripts/State_machine/node_state_machine.gd" id="2_siygm"]
 [ext_resource type="Script" uid="uid://d0cgqnhwnys4e" path="res://Scenes/Characters/Player/idle.gd" id="3_qqvsf"]
 [ext_resource type="Script" uid="uid://ucu71gafw75r" path="res://Scenes/Characters/Player/run.gd" id="5_apx8m"]
-[ext_resource type="PackedScene" uid="uid://cfhom5aft06uq" path="res://Scenes/Characters/Player/SpawnerBullet/spawn_bullet.tscn" id="7_dxcao"]
 [ext_resource type="PackedScene" uid="uid://bauod5linwk1a" path="res://Scenes/Components/PowersManager/PowersManager.tscn" id="9_8gg06"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1mdwi"]
@@ -365,9 +364,6 @@ player = NodePath("../..")
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_fc1h2")
 debug_color = Color(0, 0.6352442, 0.42328665, 0.41960785)
-
-[node name="Spawn_Bullet" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_dxcao")]
-player = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

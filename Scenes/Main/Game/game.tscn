@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_fceyo"]
 script = ExtResource("4_xmtad")
 nome = "GreenSlime"
-qtd_max = 1
+qtd_max = 10
 enemy = ExtResource("6_xmtad")
 spawn_radius = 150.0
 metadata/_custom_type_script = "uid://6v1lqfqo4tbh"
@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://6v1lqfqo4tbh"
 [sub_resource type="Resource" id="Resource_aub7b"]
 script = ExtResource("4_xmtad")
 nome = "PurpleSlime"
+qtd_max = 20
 enemy = ExtResource("7_l7shd")
 spawn_radius = 250.0
 spawn_angle = 1.0
