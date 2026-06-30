@@ -5,8 +5,6 @@ extends Power
 @onready var timer: Timer = $Timer
 @onready var spawner_component: SceneSpawner = $SpawnerComponent
 
-var lst_enemys_detected:Array[Enemy]
-
 func _ready() -> void:
 	collision_shape_2d.shape.radius = power.power_range
 	timer.wait_time = power.cooldown
@@ -14,18 +12,7 @@ func _ready() -> void:
 
 		
 func power_active() -> void:
-	var closest_enemy:Enemy
-	var min_enemy_dist:float
-	for enemy in lst_enemys_detected:
-		var enemy_dist:float = player.position.distance_to(enemy.position)
-		if min_enemy_dist:
-			if enemy_dist < min_enemy_dist:
-				min_enemy_dist = enemy_dist
-				closest_enemy = enemy
-		else:
-			min_enemy_dist = enemy_dist
-			closest_enemy = enemy
-			
+	var closest_enemy:Enemy = find_closest_enemy()
 	if closest_enemy:
 		var enemy_future_position:Vector2 = closest_enemy.position
 		var player_future_position:Vector2 = player.position
