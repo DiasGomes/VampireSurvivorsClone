@@ -14,6 +14,7 @@ var particle_material:ParticleProcessMaterial
 func start_enemy(player_position:Vector2) -> void:
 	target_position = player_position
 	position = Vector2.ZERO
+	my_hit = false
 	particle_material = enemy_particles.process_material
 	start()
 	

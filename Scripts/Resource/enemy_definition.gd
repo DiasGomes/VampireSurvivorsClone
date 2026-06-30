@@ -6,3 +6,4 @@ extends Resource
 @export var enemy: PackedScene
 @export var spawn_radius: float
 @export var spawn_angle: float
+@export var spawn_angle_velocity:float

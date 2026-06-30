@@ -8,5 +8,6 @@ active = true
 damage = 1.0
 critical = 0.1
 cooldown = 1.0
-power_range = 100.0
+power_range = 175.0
+speed = 200.0
 metadata/_custom_type_script = "uid://cfkko8jnsdlsp"
