@@ -7,3 +7,4 @@ extends Resource
 @export var cooldown:float
 @export var power_range:float
 @export var size:float
+@export var speed:float
