@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_s8hne")
-active = true
 damage = 1.0
 critical = 0.1
 cooldown = 1.0
